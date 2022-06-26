@@ -1,4 +1,10 @@
 import React, { useEffect, useState } from "react";
+import {
+  Routes,
+  Route
+} from "react-router-dom";
+import { Layout } from "./components";
+import { CoursesPage, HomePage } from "./pages";
 import "./App.css";
 
 const App = () => {
@@ -11,15 +17,17 @@ const App = () => {
       return res.json()
     })
     .then((data) => {
-      console.log(data)
       setData(data.message)
     })
   }, []);
 
   return(
-    <div>
-      <p>my data: {data}</p>
-    </div>
+    <Layout>
+        <Routes>
+          <Route path="/" element={<HomePage/>}/>
+          <Route path="/courses" element={<CoursesPage/>}/>
+        </Routes>
+    </Layout>
   );
 }
 
